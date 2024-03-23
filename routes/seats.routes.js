@@ -25,8 +25,9 @@ router.route('/').post((req, res) => {
     const {day, seat, client, email} = req.body;
 
     if( day && seat && client && email) {
-        data.push({id: shortid(), ...{day, seat, client, email}});
-        res.json(data);            
+        const item = {id: shortid(), ...{day, seat, client, email}};
+        data.push(item);
+        res.json(item);            
     } else {
         res.status(400).json({message: 'Missing request data...'})
     }
