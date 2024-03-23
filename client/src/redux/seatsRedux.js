@@ -49,13 +49,15 @@ export const addSeatRequest = (seat) => {
   return async dispatch => {
 
     dispatch(startRequest({ name: 'ADD_SEAT' }));
+    dispatch(startRequest({ name: 'LOAD_SEATS' }));
+
     try {
 
       let res = await axios.post(`${API_URL}/seats`, seat);
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      dispatch(addSeat(res));
+      dispatch(addSeat(res.data));
       dispatch(endRequest({ name: 'ADD_SEAT' }));
-
+      dispatch(endRequest({ name: 'LOAD_SEATS' }));
     } catch(e) {
       dispatch(errorRequest({ name: 'ADD_SEAT', error: e.message }));
     }
