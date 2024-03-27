@@ -14,7 +14,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
     dispatch(loadSeatsRequest());
     !timer && setTimer(setInterval(() => {
       console.log('reload seats')
-    //  dispatch(loadSeatsRequest());
+      //dispatch(loadSeatsRequest());
     }, 30000))
     return () => {
       clearInterval(timer);
