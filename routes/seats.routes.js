@@ -33,7 +33,8 @@ router.route('/').post((req, res) => {
         if(!isReserved){
             const item = {id: shortid(), ...{day, seat, client, email}};
             data.push(item);
-            res.json(item);            
+            res.json(item);
+            req.io.emit('seatsUpdated', data);
         } else {
             res.status(409).json({message: 'The slot is already taken...'})
         }
