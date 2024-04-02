@@ -1,23 +1,32 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import io from 'socket.io-client';
 import { Button, Progress, Alert } from 'reactstrap';
-import { getSeats, loadSeatsRequest, getRequests } from '../../../redux/seatsRedux';
+import { getSeats, loadSeats, loadSeatsRequest, getRequests } from '../../../redux/seatsRedux';
 import './SeatChooser.scss';
 
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const dispatch = useDispatch();
   const seats = useSelector(getSeats);
   const requests = useSelector(getRequests);
-  const [timer, setTimer] = useState(null);
+  const [socket, setSocket] = useState();
+//  const [timer, setTimer] = useState(null);
   
   useEffect(() => {
-    dispatch(loadSeatsRequest());
-    !timer && setTimer(setInterval(() => {
-      console.log('reload seats')
-      //dispatch(loadSeatsRequest());
-    }, 30000))
+    const socket = io(process.env.NODE_ENV === 'production' ? '' : 'ws://localhost:8000', { transports: ['websocket'] });
+    socket.on('seatsUpdated', (seats) => {
+      console.log('seats: ', seats);
+      dispatch(loadSeats(seats))
+    });
+    setSocket(socket);
+    dispatch(loadSeatsRequest());   // load init data
+    //  !timer && setTimer(setInterval(() => { //refresh data
+    //    console.log('reload seats')
+    //    dispatch(loadSeatsRequest());
+    // }, 30000))
     return () => {
-      clearInterval(timer);
+    //  clearInterval(timer);
+      socket.disconnect();
     }
   }, [dispatch])
 
@@ -41,6 +50,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
       { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success) && <div className="seats">{[...Array(50)].map((x, i) => prepareSeat(i+1) )}</div>}
       { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending) && <Progress animated color="primary" value={50} /> }
       { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error) && <Alert color="warning">Couldn't load seats...</Alert> }
+      <section >Free seats: {seats.length} / {150}</section>
     </div>
   )
 }
