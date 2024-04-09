@@ -45,7 +45,9 @@ exports.addItem = async (req, res) => {
         if( day && seat && client && email) {
           const newItem = new Seat({ day, seat, client, email });   // create item/document for model
           const addedItem = await newItem.save();                             // add item to the collection with the same model
+          const seats = await Seat.find();
           res.json(addedItem);
+          req.io.emit('seatsUpdated', seats);
         } else {
           res.status(400).json({message: 'Missing request data...'})
         }
