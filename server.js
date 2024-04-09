@@ -23,7 +23,8 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 
 
 // connects our backend code with the database
-mongoose.connect('mongodb://0.0.0.0:27017/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://0.0.0.0:27017/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://ufsowa:DqhxaTF5BRLEzT19@cluster0.dmtd0di.mongodb.net/NewWaveDB?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {

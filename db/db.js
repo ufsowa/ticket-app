@@ -17,3 +17,10 @@ exports.db = {
         { id: 6, day: 2, seat: 2, client: 'Molier Lo Celso', email: 'moiler.lo.celso@example.com'  },
     ],
 };
+
+// pass DqhxaTF5BRLEzT19
+// mongodb+srv://ufsowa:<password>@cluster0.dmtd0di.mongodb.net/
+
+// mongodb+srv://ufsowa:<password>@cluster0.dmtd0di.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+// https://cloud.mongodb.com/v2/66159359ae4384315a69c1d8#/overview
