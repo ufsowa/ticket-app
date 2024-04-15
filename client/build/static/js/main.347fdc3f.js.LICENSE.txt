@@ -4,6 +4,15 @@
 	http://jedwatson.github.io/classnames
 */
 
+/*!
+ * Number-To-Words util
+ * @version v1.2.4
+ * @link https://github.com/marlun78/number-to-words
+ * @author Martin Eneqvist (https://github.com/marlun78)
+ * @contributors Aleksey Pilyugin (https://github.com/pilyugin),Jeremiah Hall (https://github.com/jeremiahrhall),Adriano Melo (https://github.com/adrianomelo),dmrzn (https://github.com/dmrzn)
+ * @license MIT
+ */
+
 /**
  * @license React
  * react-dom.production.min.js
@@ -76,6 +85,17 @@
 
 /**
  * @remix-run/router v1.15.3
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+
+/**
+ * React Router DOM v6.22.3
  *
  * Copyright (c) Remix Software Inc.
  *

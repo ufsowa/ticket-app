@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL } from '../config';
 
 /* SELECTORS */
-export const getConcerts = ({ concerts }) => concerts.data;
+export const getConcerts = ({ concerts }) => concerts.data.sort((a,b) => a.day - b.day);
 export const getRequest = ({ concerts }) => concerts.request;
 
 /* ACTIONS */

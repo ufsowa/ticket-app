@@ -7,8 +7,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const MainMenu = () => {
 
@@ -26,15 +26,15 @@ const MainMenu = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto align-items-center" navbar>
             <NavItem>
-              <NavLink href="/">Home</NavLink>
+              <Link className="nav-link" to={`/`}>Home</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/prices">Prices</NavLink>
+            <Link className="nav-link" to={`/prices`}>Prices</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/order-a-ticket">
+            <Link className="nav-link" to={`/order-a-ticket`}>
                 <Button outline color="primary">Order a ticket!</Button>
-              </NavLink>
+            </Link>
             </NavItem>
           </Nav>
         </Collapse>
